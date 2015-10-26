@@ -13,6 +13,7 @@
 
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'FrontendController@index']);
+    Route::get('home', ['as' => 'home', 'uses' => 'FrontendController@index']);
     Route::get('dashboard', ['as' => 'home', 'uses' => 'DashboardController@index']);
 });
 
