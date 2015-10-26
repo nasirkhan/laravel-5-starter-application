@@ -32,19 +32,31 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Project name</a>
+                    <a class="navbar-brand" href="#">@yield('title', config('settings.app_name'))</a>
                 </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <form class="navbar-form navbar-right" role="form">
-                        <div class="form-group">
-                            <input type="text" placeholder="Email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" placeholder="Password" class="form-control">
-                        </div>
-                        <button type="submit" class="btn btn-success">Sign in</button>
-                    </form>
-                </div><!--/.navbar-collapse -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Help</a></li>
+                    @if (Auth::guest())
+                    <li>{!! link_to('auth/login', 'Login') !!}</li>
+                    <li>{!! link_to('auth/register', 'Register') !!}</li>
+                    @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>{!! link_to('dashboard', 'Dashboard') !!}</li>
+                            <li>{!! link_to('auth/password/change', 'Change Password') !!}</li>
+                            @permission('view_backend')
+                            {{-- This can also be @role('Administrator') instead --}}
+                            <li>{!! link_to_route('backend.dashboard', 'Administration') !!}</li>
+                            @endpermission
+                            <li>{!! link_to('auth/logout', 'Logout') !!}</li>
+                        </ul>
+                    </li>
+                    @endif
+                </ul>
             </div>
         </nav>
 
