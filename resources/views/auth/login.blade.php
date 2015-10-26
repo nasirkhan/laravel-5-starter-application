@@ -7,7 +7,7 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="@yield('title', config('settings.meta_description'))">       
         <link rel="apple-touch-icon" href="{{asset('apple-touch-icon.png')}}">
-        <meta name="author" content="">
+        <meta name="author" content="Nasir Khan">
         <link rel="icon" href="{{asset('favicon.ico')}}">
 
         <title>@yield('title', config('settings.app_name'))</title>

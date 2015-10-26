@@ -1,29 +1,108 @@
-<!-- resources/views/auth/register.blade.php -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="@yield('title', config('settings.meta_description'))">       
+        <link rel="apple-touch-icon" href="{{asset('apple-touch-icon.png')}}">
+        <meta name="author" content="Nasir Khan">
+        <link rel="icon" href="{{asset('favicon.ico')}}">
 
-<form method="POST" action="/auth/register">
-    {!! csrf_field() !!}
+        <title>@yield('title', config('settings.app_name'))</title>
 
-    <div>
-        Name
-        <input type="text" name="name" value="{{ old('name') }}">
-    </div>
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
 
-    <div>
-        Email
-        <input type="email" name="email" value="{{ old('email') }}">
-    </div>
+        <!-- Custom styles for this template -->
+        <style>
+            body {
+                padding-top: 40px;
+                padding-bottom: 40px;
+                background-color: #eee;
+            }
 
-    <div>
-        Password
-        <input type="password" name="password">
-    </div>
+            .form-signin {
+                max-width: 330px;
+                padding: 15px;
+                margin: 0 auto;
+            }
+            .form-signin .form-signin-heading,
+            .form-signin .checkbox {
+                margin-bottom: 10px;
+            }
+            .form-signin .checkbox {
+                font-weight: normal;
+            }
+            .form-signin .form-control {
+                position: relative;
+                height: auto;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                padding: 10px;
+                font-size: 16px;
+            }
+            .form-signin .form-control:focus {
+                z-index: 2;
+            }
+            .form-signin input[type="email"] {
+                margin-bottom: -1px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+            .form-signin input[type="password"] {
+                margin-bottom: 10px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
 
-    <div>
-        Confirm Password
-        <input type="password" name="password_confirmation">
-    </div>
+        </style>
 
-    <div>
-        <button type="submit">Register</button>
-    </div>
-</form>
+        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+        <!--[if lt IE 9]><script src="{{asset('js/ie8-responsive-file-warning.js')}}"></script><![endif]-->        
+        <script src="{{asset('js/ie-emulation-modes-warning.js')}}"></script>
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <form method="POST" action="/auth/register" class="form-signin">
+                <h2 class="form-signin-heading">Please sign up</h2>
+
+                {!! csrf_field() !!}
+
+                <label for="name" class="sr-only">Name</label>
+                <input type="text" name="name" id="name" class="form-control" placeholder="Full Name" value="{{ old('name') }}" required autofocus>
+ 
+                <label for="email" class="sr-only">Email address</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Email address" value="{{ old('email') }}" required autofocus>
+
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                
+                <label for="password_confirmation" class="sr-only">Password Confirmation</label>
+                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Password Confirmation" required>
+                                
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+                
+                <p>Already member? Please {!! link_to('auth/login', 'Login') !!}.</p>
+            </form>
+            
+            
+
+        </div> <!-- /container -->
+
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="{{asset('js/ie10-viewport-bug-workaround.js')}}"></script>
+    </body>
+</html>
