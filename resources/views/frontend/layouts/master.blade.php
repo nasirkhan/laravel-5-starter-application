@@ -43,15 +43,11 @@
                     <li>{!! link_to('auth/login', 'Login') !!}</li>
                     <li>{!! link_to('auth/register', 'Register') !!}</li>
                     @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                    <li class="dropdown">                        
+                        <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">{{ Auth::user()->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>{!! link_to('dashboard', 'Dashboard') !!}</li>
                             <li>{!! link_to('auth/password/change', 'Change Password') !!}</li>
-                            @permission('view_backend')
-                            {{-- This can also be @role('Administrator') instead --}}
-                            <li>{!! link_to_route('backend.dashboard', 'Administration') !!}</li>
-                            @endpermission
                             <li>{!! link_to('auth/logout', 'Logout') !!}</li>
                         </ul>
                     </li>
@@ -59,6 +55,29 @@
                 </ul>
             </div>
         </nav>
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
@@ -98,12 +117,12 @@
             </footer>
         </div> <!-- /container -->        
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
 
-        <link rel="stylesheet" href="{{asset('js/vendor/bootstrap.min.js')}}">
-        <link rel="stylesheet" href="{{asset('js/plugins.js')}}">
-        <link rel="stylesheet" href="{{asset('js/main.js')}}">
+        <script src="{{asset('js/vendor/bootstrap.min.js')}}"></script>
+        <script src="{{asset('js/plugins.js')}}"></script>
+        <script src="{{asset('js/main.js')}}"></script>
 
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
