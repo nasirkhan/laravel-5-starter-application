@@ -9,7 +9,14 @@
 
     <name>
 
+    Nasir Khan
+    http://nasirkhn.com
+
 # TECHNOLOGY COLOPHON
 
     HTML5, CSS3
     jQuery, Modernizr
+    Laravel
+
+    Laravel Starter package 
+    https://github.com/nasirkhan/laravel-5-starter-application
