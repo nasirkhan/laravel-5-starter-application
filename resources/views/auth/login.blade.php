@@ -91,6 +91,14 @@
                     </label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                
+                <hr>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="/password/email">Click here</a> to Reset Password
+                    </li>
+                </ul>
             </form>
 
         </div> <!-- /container -->
