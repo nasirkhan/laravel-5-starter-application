@@ -96,6 +96,14 @@
 
                 <ul class="list-unstyled">
                     <li>
+                        Do not have any account? <a href="/auth/register">Register here</a>.
+                    </li>
+                </ul>
+                
+                <hr>
+
+                <ul class="list-unstyled">
+                    <li>
                         <a href="/password/email">Click here</a> to Reset Password
                     </li>
                 </ul>
