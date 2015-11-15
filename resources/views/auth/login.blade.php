@@ -107,6 +107,18 @@
                         <a href="/password/email">Click here</a> to Reset Password
                     </li>
                 </ul>
+                
+                <hr>
+
+                <ul class="list-inline">
+                    <li>
+                        <a class="btn btn-primary" href="{{ route('social.login', ['github']) }}">Github</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-primary" href="{{ route('social.login', ['facebook']) }}">Facebook</a>
+                    </li>
+                </ul>
+                                           
             </form>
 
         </div> <!-- /container -->
