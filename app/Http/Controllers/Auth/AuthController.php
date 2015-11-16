@@ -47,7 +47,7 @@ use AuthenticatesAndRegistersUsers,
         try {
             $user = Socialite::driver($provider)->user();
         } catch (Exception $e) {
-            return Redirect::to($this->redirectPath());
+            return redirect('/');
         }
 
         $authUser = $this->findOrCreateUser($user, $provider);
@@ -64,50 +64,41 @@ use AuthenticatesAndRegistersUsers,
      * @return User
      */
     private function findOrCreateUser($socialUser, $provider) {
-        if ($authUser = User::where('email', $socialUser->getEmail())->first()) {
+        if ($authUser = UserProvider::where('provider_id', $socialUser->getId())->first()) {
+            
+            $authUser = User::findOrFail($authUser->user->id);
+                    
             return $authUser;
+            
+        } else if ($authUser = User::where('email', $socialUser->getEmail())->first()) {
+
+            UserProvider::create([
+                        'user_id' => $authUser->id,
+                        'provider_id' => $socialUser->getId(),
+                        'avatar' => $socialUser->getAvatar(),
+                        'provider' => $provider                    
+            ]);
+            
+            return $authUser;
+            
+        } else {
+            
+            $user = User::create([
+                        'name' => $socialUser->getName(),
+                        'email' => $socialUser->getEmail()
+            ]);
+
+            UserProvider::create([
+                        'user_id' => $user->id,
+                        'provider_id' => $socialUser->getId(),
+                        'avatar' => $socialUser->getAvatar(),
+                        'provider' => $provider                    
+            ]);
+            
+            return $user;
         }
-
-        $user = User::create([
-                    'name' => $socialUser->getName(),
-                    'email' => $socialUser->getEmail()
-        ]);
-        
-        $user_data = $user->attributesToArray();
-        $userId = $user_data ['id'];
-        
-//        dd($user_data ['id']);
-        
-        UserProvider::create([
-                    'user_id' => $userId,
-                    'provider_id' => $socialUser->getId(),
-                    'avatar' => $socialUser->getAvatar(),
-                    'provider' => $provider                    
-        ]);
-        
-        return $user;
+                        
     }
-
-//    public function handleProviderCallback($provider) {
-//        //notice we are not doing any validation, you should do it
-//
-//        try {
-//            $user = Socialite::driver($provider)->user();
-//        } catch (Exception $e) {
-//            return Redirect::to($this->redirectPath());
-//        }
-//
-//        // stroing data to our use table and logging them in
-//        $data = [
-//            'name' => $user->getName(),
-//            'email' => $user->getEmail()
-//        ];
-//
-//        Auth::login(User::firstOrCreate($data));
-//
-//        //after login redirecting to home page
-//        return redirect($this->redirectPath());
-//    }
 
     /**
      * Get a validator for an incoming registration request.
