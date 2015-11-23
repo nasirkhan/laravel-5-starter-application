@@ -14,7 +14,6 @@
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'FrontendController@index']);
     Route::get('home', ['as' => 'home', 'uses' => 'FrontendController@index']);
-    Route::get('dashboard', ['as' => 'frontend.dashboard', 'uses' => 'DashboardController@index']);
 });
 
 /**
@@ -25,6 +24,7 @@ Route::group(['namespace' => 'Backend'], function () {
     Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         
         Route::get('/', ['as' => 'backend.dashboard', 'uses' => 'DashboardController@index']);
+        Route::get('users', ['uses' => 'UsersController@index']);
         
     });
 });
