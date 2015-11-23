@@ -69,4 +69,6 @@ $module_name_singular = str_singular($module_name);
     </tbody>
 </table>
 
+{!! $users->render() !!}
+
 @endsection
