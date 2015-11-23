@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>@yield('title', config('settings.app_name'))</title>
+        <title>@yield('title') | {{ config('settings.app_name') }}</title>
         <meta name="description" content="@yield('title', config('settings.meta_description'))">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -61,7 +61,9 @@
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
             <div class="container">
-                <h2>Admin Dashboard</h2>                
+                <h2>
+                    <i class="fa fa-{{ $module_icon }}"></i> @yield('page_heading')
+                </h2>                
             </div>
         </div>
 
