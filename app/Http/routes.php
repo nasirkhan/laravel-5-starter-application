@@ -14,7 +14,19 @@
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'FrontendController@index']);
     Route::get('home', ['as' => 'home', 'uses' => 'FrontendController@index']);
-    Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
+    Route::get('dashboard', ['as' => 'frontend.dashboard', 'uses' => 'DashboardController@index']);
+});
+
+/**
+ * Backend Routes
+ * Namespaces indicate folder structure
+ */
+Route::group(['namespace' => 'Backend'], function () {
+    Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+        
+        Route::get('/', ['as' => 'backend.dashboard', 'uses' => 'DashboardController@index']);
+        
+    });
 });
 
 // Authentication routes
