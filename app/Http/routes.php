@@ -24,7 +24,7 @@ Route::group(['namespace' => 'Backend'], function () {
     Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         
         Route::get('/', ['as' => 'backend.dashboard', 'uses' => 'DashboardController@index']);
-        Route::get('users', ['uses' => 'UsersController@index']);
+        Route::resource('users', 'UsersController');
         
     });
 });
