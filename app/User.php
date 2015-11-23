@@ -46,4 +46,14 @@ class User extends Model implements AuthenticatableContract,
     public function providers() {
         return $this->hasMany('App\UserProvider');
     }
+    
+    /**
+     * A permission can be applied to roles.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
 }
