@@ -7,6 +7,14 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller {
+    
+    public function __construct() {
+
+        $this->module_name = 'dashboards';
+        $this->module_icon = 'dashboard';
+        $this->title = "Application Admin Dashboard";
+        
+    }
 
     /**
      * Display a listing of the resource.
@@ -15,7 +23,13 @@ class DashboardController extends Controller {
      */
     public function index() {
         
-        return view('backend.index');
+        $title = $this->title;        
+        $module_name = $this->module_name;
+        $module_icon = $this->module_icon;
+        
+        $page_heading = "Admin Dashboard";
+        
+        return view('backend.index', compact('title', 'page_heading', 'module_icon'));
         
     }
 
