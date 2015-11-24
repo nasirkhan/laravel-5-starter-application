@@ -21,7 +21,7 @@ $module_name_singular = str_singular($module_name);
 @section('content')
 
 <p>
-    <a href="{{ route('admin.users.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Create {{ ucfirst($module_name_singular) }}</a>
+    <a href="{{ route("admin.$module_name.create") }}" class="btn btn-success"><i class="fa fa-plus"></i> Create {{ ucfirst($module_name_singular) }}</a>
 </p>
 
 <table class="table table-bordered table-striped">
@@ -55,7 +55,7 @@ $module_name_singular = str_singular($module_name);
                 {{ $module_name_singular->id }}
             </td>
             <td>
-                <a href="{{ route('admin.users.show', $module_name_singular->id) }}" >
+                <a href="{{ route("admin.$module_name.show", $module_name_singular->id) }}" >
                     {{ $module_name_singular->name }}
                 </a>
             </td>
@@ -69,7 +69,7 @@ $module_name_singular = str_singular($module_name);
                 {{ $module_name_singular->updated_at }}
             </td>
             <td>
-                <a class="btn btn-primary" href="{{ route('admin.users.edit', $module_name_singular->id) }}">
+                <a class="btn btn-primary" href="{{ route("admin.$module_name.edit", $module_name_singular->id) }}">
                     Edit
                 </a>
             </td>
@@ -79,6 +79,6 @@ $module_name_singular = str_singular($module_name);
     </tbody>
 </table>
 
-{!! $users->render() !!}
+{!! $$module_name->render() !!}
 
 @endsection
