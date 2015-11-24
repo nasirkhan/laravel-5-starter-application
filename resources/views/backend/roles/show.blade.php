@@ -35,7 +35,7 @@ $module_name_singular = str_singular($module_name);
                 Name
             </th>
             <th>
-                Email
+                Label
             </th>
             <th>
                 Created At
@@ -55,7 +55,7 @@ $module_name_singular = str_singular($module_name);
                 {{ $$module_name_singular->name }}
             </td>
             <td>
-                {{ $$module_name_singular->email }}
+                {{ $$module_name_singular->label }}
             </td>
             <td>
                 {{ $$module_name_singular->created_at->format('M jS Y g:ia') }}
@@ -67,19 +67,5 @@ $module_name_singular = str_singular($module_name);
 
     </tbody>
 </table>
-
-@foreach($$module_name_singular->providers as $provider)
-
-<ul>
-    <li>{{ $provider->id }}</li>
-    <li>{{ $provider->provider }}</li>
-    <li>{{ $provider->provider_id }}</li>
-    <li>{{ $provider->avatar }}</li>
-    <li><img src="{{ $provider->avatar }}" class="img-responsive" /></li>
-    <li>{{ $provider->created_at }}</li>
-    <li>{{ $provider->updated_at }}</li>
-</ul>
-
-@endforeach
 
 @endsection

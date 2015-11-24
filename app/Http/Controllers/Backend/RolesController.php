@@ -69,7 +69,20 @@ class RolesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        //
+        
+        $title = $this->title;
+        $module_name = $this->module_name;
+        $module_name_singular = str_singular($this->module_name);
+        $module_icon = $this->module_icon;
+        $module_action = "Details";
+        
+        $$module_name_singular = Role::findOrFail($id);
+
+        return view("backend.$module_name.show", compact('module_name', 
+                                                        "$module_name_singular", 
+                                                        'module_icon', 
+                                                        'module_action',
+                                                        'title'));
     }
 
     /**
@@ -79,7 +92,21 @@ class RolesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        //
+        
+        $title = $this->title;
+        $module_name = $this->module_name;
+        $module_name_singular = str_singular($this->module_name);
+        $module_icon = $this->module_icon;
+        $module_action = "Edit";
+        
+        $$module_name_singular = Role::findOrFail($id);
+
+        return view("backend.$module_name.edit", compact('module_name', 
+                                                        "$module_name_singular", 
+                                                        'module_icon', 
+                                                        'module_action',
+                                                        'title'));
+        
     }
 
     /**
@@ -90,7 +117,14 @@ class RolesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+        $module_name = $this->module_name;
+        $module_name_singular = str_singular($this->module_name);
+
+        $module_name_singular = Role::findOrFail($id);
+
+        $module_name_singular->update($request->all());        
+
+        return redirect("admin/$module_name")->with('flash_success', "Update successful!");
     }
 
     /**
