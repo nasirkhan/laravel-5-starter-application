@@ -21,4 +21,8 @@
     admin area
 </div>
 
+<a class="btn btn-lg btn-success" href="admin/users">
+  <i class="fa fa-users fa-2x pull-left"></i> All Users
+</a>
+
 @endsection
