@@ -34,7 +34,7 @@ $module_name_singular = str_singular($module_name);
                 Name
             </th>
             <th>
-                Lable
+                Label
             </th>
             <th>
                 Created At
@@ -60,7 +60,7 @@ $module_name_singular = str_singular($module_name);
                 </a>
             </td>
             <td>
-                {{ $module_name_singular->lable }}
+                {{ $module_name_singular->label }}
             </td>
             <td>
                 {{ $module_name_singular->created_at }}
