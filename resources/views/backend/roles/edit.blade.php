@@ -40,9 +40,9 @@ $module_name_singular = str_singular($module_name);
             </div>
         </div>
         <div class="form-group">
-            {!! Form::label('email', 'Email' , ['class' => 'col-sm-2 control-label']) !!}   
+            {!! Form::label('label', 'Label' , ['class' => 'col-sm-2 control-label']) !!}   
             <div class="col-sm-10">
-                {!! Form::text('email', old('email') , ['class' => 'form-control']) !!} 
+                {!! Form::text('label', old('label') , ['class' => 'form-control']) !!} 
             </div>
         </div>
         
