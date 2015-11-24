@@ -73,13 +73,14 @@ class UsersController extends Controller {
         
         $title = $this->title;
         $module_name = $this->module_name;
+        $module_name_singular = str_singular($this->module_name);
         $module_icon = $this->module_icon;
         $module_action = "Details";
         
-        $user = User::findOrFail($id);
+        $$module_name_singular = User::findOrFail($id);
 
         return view("backend.$module_name.show", compact('module_name', 
-                                                        'user', 
+                                                        "$module_name_singular",
                                                         'module_icon', 
                                                         'module_action',
                                                         'title'));
@@ -95,13 +96,14 @@ class UsersController extends Controller {
         
         $title = $this->title;
         $module_name = $this->module_name;
+        $module_name_singular = str_singular($this->module_name);
         $module_icon = $this->module_icon;
         $module_action = "Edit";
         
-        $user = User::findOrFail($id);
+        $$module_name_singular = User::findOrFail($id);
 
         return view("backend.$module_name.edit", compact('module_name', 
-                                                        'user', 
+                                                        "$module_name_singular", 
                                                         'module_icon', 
                                                         'module_action',
                                                         'title'));
@@ -118,10 +120,11 @@ class UsersController extends Controller {
     public function update(Request $request, $id) {
         
         $module_name = $this->module_name;
+        $module_name_singular = str_singular($this->module_name);
 
-        $post = User::findOrFail($id);
+        $module_name_singular = User::findOrFail($id);
 
-        $post->update($request->all());        
+        $module_name_singular->update($request->all());        
 
         return redirect("admin/$module_name")->with('flash_success', "Update successful!");
     }
