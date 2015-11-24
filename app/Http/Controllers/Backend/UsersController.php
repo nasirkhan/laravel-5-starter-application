@@ -70,7 +70,19 @@ class UsersController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        //
+        
+        $title = $this->title;
+        $module_name = $this->module_name;
+        $module_icon = $this->module_icon;
+        $module_action = "Details";
+        
+        $user = User::findOrFail($id);
+
+        return view("backend.$module_name.show", compact('module_name', 
+                                                        'user', 
+                                                        'module_icon', 
+                                                        'module_action',
+                                                        'title'));
     }
 
     /**
@@ -80,7 +92,20 @@ class UsersController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        //
+        
+        $title = $this->title;
+        $module_name = $this->module_name;
+        $module_icon = $this->module_icon;
+        $module_action = "Edit";
+        
+        $user = User::findOrFail($id);
+
+        return view("backend.$module_name.edit", compact('module_name', 
+                                                        'user', 
+                                                        'module_icon', 
+                                                        'module_action',
+                                                        'title'));
+        
     }
 
     /**
@@ -91,7 +116,14 @@ class UsersController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+        
+        $module_name = $this->module_name;
+
+        $post = User::findOrFail($id);
+
+        $post->update($request->all());        
+
+        return redirect("admin/$module_name")->with('flash_success', "Update successful!");
     }
 
     /**

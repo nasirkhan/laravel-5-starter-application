@@ -13,7 +13,7 @@ $module_name_singular = str_singular($module_name);
 
 @section('page_heading')
 
-{{ ucfirst($module_name) }} List
+{{ ucfirst($module_name) }} {{ $module_action }}
 
 @endsection
 

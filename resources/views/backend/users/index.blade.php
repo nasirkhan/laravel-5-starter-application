@@ -42,6 +42,9 @@ $module_name_singular = str_singular($module_name);
             <th>
                 Updated At
             </th>
+            <th>
+                Action
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -52,7 +55,9 @@ $module_name_singular = str_singular($module_name);
                 {{ $module_name_singular->id }}
             </td>
             <td>
-                {{ $module_name_singular->name }}
+                <a href="{{ route('admin.users.show', $module_name_singular->id) }}" >
+                    {{ $module_name_singular->name }}
+                </a>
             </td>
             <td>
                 {{ $module_name_singular->email }}
@@ -62,6 +67,11 @@ $module_name_singular = str_singular($module_name);
             </td>
             <td>
                 {{ $module_name_singular->updated_at }}
+            </td>
+            <td>
+                <a class="btn btn-primary" href="{{ route('admin.users.edit', $module_name_singular->id) }}">
+                    Edit
+                </a>
             </td>
         </tr>
         
