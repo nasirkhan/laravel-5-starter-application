@@ -21,7 +21,7 @@ $module_name_singular = str_singular($module_name);
 
 <p>
     <a href="{{ route("admin.$module_name.index") }}" class="btn btn-success">
-        <i class="fa fa-users"></i> {{ ucfirst($module_name_singular) }} List
+        <i class="fa fa-{{ $module_icon }}"></i> {{ ucfirst($module_name_singular) }} List
     </a>
 </p>
 
