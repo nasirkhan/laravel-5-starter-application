@@ -12,8 +12,9 @@ class RolesController extends Controller {
     public function __construct() {
 
         $this->module_name = 'roles';
-        $this->module_icon = 'roles';
+        $this->module_icon = 'user-secret';
         $this->title = "Application Admin Dashboard";
+        
     }
 
 
@@ -54,7 +55,7 @@ class RolesController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(RolesRequest $request) {
         $module_name = $this->module_name;
 
         Role::create($request->all());
@@ -116,7 +117,7 @@ class RolesController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
+    public function update(RolesRequest $request, $id) {
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
