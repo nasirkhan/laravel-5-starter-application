@@ -6,17 +6,16 @@ use Illuminate\Http\Request;
 use App\Http\Requests\RolesRequest;
 use App\Http\Controllers\Controller;
 use App\Role;
+use App\Permission;
 
 class RolesController extends Controller {
-    
+
     public function __construct() {
 
         $this->module_name = 'roles';
         $this->module_icon = 'user-secret';
         $this->title = "Application Admin Dashboard";
-        
     }
-
 
     /**
      * Display a listing of the resource.
@@ -46,7 +45,10 @@ class RolesController extends Controller {
         $module_icon = $this->module_icon;
         $module_action = "Create";
 
-        return view("backend.$module_name.create", compact('title', 'module_name', 'module_icon', 'module_action'));
+        $permissions = Permission::all();
+
+        return view("backend.$module_name.create", compact(
+                        'title', 'module_name', 'module_icon', 'module_action', 'permissions'));
     }
 
     /**
@@ -70,20 +72,16 @@ class RolesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        
+
         $title = $this->title;
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
         $module_icon = $this->module_icon;
         $module_action = "Details";
-        
+
         $$module_name_singular = Role::findOrFail($id);
 
-        return view("backend.$module_name.show", compact('module_name', 
-                                                        "$module_name_singular", 
-                                                        'module_icon', 
-                                                        'module_action',
-                                                        'title'));
+        return view("backend.$module_name.show", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
     }
 
     /**
@@ -93,21 +91,18 @@ class RolesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        
+
         $title = $this->title;
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
         $module_icon = $this->module_icon;
         $module_action = "Edit";
-        
+
         $$module_name_singular = Role::findOrFail($id);
 
-        return view("backend.$module_name.edit", compact('module_name', 
-                                                        "$module_name_singular", 
-                                                        'module_icon', 
-                                                        'module_action',
-                                                        'title'));
-        
+        $permissions = Permission::all();
+
+        return view("backend.$module_name.edit", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title', "permissions"));
     }
 
     /**
@@ -118,12 +113,13 @@ class RolesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(RolesRequest $request, $id) {
+return $request->all();
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
         $module_name_singular = Role::findOrFail($id);
 
-        $module_name_singular->update($request->all());        
+        $module_name_singular->update($request->all());
 
         return redirect("admin/$module_name")->with('flash_success', "Update successful!");
     }

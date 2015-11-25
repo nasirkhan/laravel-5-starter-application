@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-<?php 
+<?php
 $module_name_singular = str_singular($module_name);
 ?>
 
@@ -67,5 +67,19 @@ $module_name_singular = str_singular($module_name);
 
     </tbody>
 </table>
+<p>
+    <strong>
+        Permissions
+    </strong>
+</p>
+<ul>
+    @foreach ($$module_name_singular->permissions as $permission)
+
+    <li>
+        {{ $permission->label }} ({{ $permission->name }})
+    </li>
+
+    @endforeach
+</ul>
 
 @endsection

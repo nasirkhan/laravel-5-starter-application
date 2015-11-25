@@ -44,7 +44,18 @@ $module_name_singular = str_singular($module_name);
                 <div class="col-sm-10">
                     <input type="label" name="label" id="label" class="form-control" placeholder="Lable" value="{{ old('label') }}" required>
                 </div>
-         </div>
+            </div>
+
+            @foreach ($permissions as $permission)
+
+            <div class="form-group">
+                {!! Form::label('permissions', 'Permissions' , ['class' => 'col-sm-2 control-label']) !!}   
+                <div class="col-sm-10">
+                    {!! Form::checkbox('permissions[]', $permission->id ) !!} {{ $permission->label }}
+                </div>
+            </div>
+
+            @endforeach
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
