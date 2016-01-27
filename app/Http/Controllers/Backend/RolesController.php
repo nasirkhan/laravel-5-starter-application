@@ -60,7 +60,8 @@ class RolesController extends Controller {
     public function store(RolesRequest $request) {
         $module_name = $this->module_name;
 
-        Role::create($request->all());
+        $$module_name_singular = Role::create($request->except('permissions_list'));        
+        $$module_name_singular->permissions()->attach($request->input('permissions_list')); 
 
         return redirect("admin/$module_name")->with('flash_success', "$module_name added!");
     }
@@ -100,7 +101,7 @@ class RolesController extends Controller {
 
         $$module_name_singular = Role::findOrFail($id);
 
-        $permissions = Permission::all();
+        $permissions = Permission::lists('name', 'id');
 
         return view("backend.$module_name.edit", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title', "permissions"));
     }
@@ -113,13 +114,23 @@ class RolesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(RolesRequest $request, $id) {
-return $request->all();
+// return $request->all();
+// return $request->input('permissions_list');
+// return $request->all();
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
-        $module_name_singular = Role::findOrFail($id);
+        $$module_name_singular = Role::findOrFail($id);
+        $$module_name_singular->update($request->except('permissions_list'));            
+        
+        if ($request->input('permissions_list') === null){
+            $permissions = array();
+            $$module_name_singular->permissions()->sync($permissions);
+        } else {
+            $$module_name_singular->permissions()->sync($request->input('permissions_list'));
+        }
 
-        $module_name_singular->update($request->all());
+
 
         return redirect("admin/$module_name")->with('flash_success', "Update successful!");
     }

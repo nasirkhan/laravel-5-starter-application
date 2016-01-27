@@ -17,6 +17,16 @@ class Role extends Model {
     public function permissions() {
         return $this->belongsToMany(Permission::class);
     }
+    /**
+     * Get the list of users related to the current Book
+     * 
+     * @return [array] categories
+     */
+    public function getPermissionsListAttribute(){
+        
+        return array_map('intval', $this->permissions->lists('id')->toArray());
+        
+    }
 
     /**
      * Grant the given permission to a role.
