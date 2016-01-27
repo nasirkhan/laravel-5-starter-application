@@ -28,6 +28,11 @@ class DashboardController extends Controller {
         $module_icon = $this->module_icon;
         
         $page_heading = "Admin Dashboard";
+
+        if(auth()->user()->can('permission1')){
+            return "omg... it worked";
+        }
+        
         
         return view('backend.index', compact('title', 'page_heading', 'module_icon'));
         
