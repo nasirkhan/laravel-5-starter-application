@@ -60,8 +60,8 @@ class RolesController extends Controller {
     public function store(RolesRequest $request) {
         $module_name = $this->module_name;
 
-        $$module_name_singular = Role::create($request->except('permissions_list'));        
-        $$module_name_singular->permissions()->attach($request->input('permissions_list')); 
+        $$module_name_singular = Role::create($request->except('permissions_list'));
+        $$module_name_singular->permissions()->attach($request->input('permissions_list'));
 
         return redirect("admin/$module_name")->with('flash_success', "$module_name added!");
     }
@@ -127,8 +127,6 @@ class RolesController extends Controller {
         } else {
             $$module_name_singular->permissions()->sync($request->input('permissions_list'));
         }
-
-
 
         return redirect("admin/$module_name")->with('flash_success', "Update successful!");
     }
