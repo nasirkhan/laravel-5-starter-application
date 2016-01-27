@@ -66,6 +66,14 @@ $module_name_singular = str_singular($module_name);
         </tr>
 
     </tbody>
+
+    <ul>
+        @foreach($$module_name_singular->permissions as $permission)
+            <li>
+                {{ $permission->name }}
+            </li>
+        @endforeach
+    </ul>
 </table>
 <p>
     <strong>
