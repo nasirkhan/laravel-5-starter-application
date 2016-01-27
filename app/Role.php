@@ -18,9 +18,9 @@ class Role extends Model {
         return $this->belongsToMany(Permission::class);
     }
     /**
-     * Get the list of users related to the current Book
+     * Get the list of users related to the current Role
      * 
-     * @return [array] categories
+     * @return [array] permissions
      */
     public function getPermissionsListAttribute(){
         

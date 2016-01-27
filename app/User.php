@@ -56,4 +56,15 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->belongsToMany(Role::class);
     }
+
+    /**
+     * Get the list of users related to the current User
+     * 
+     * @return [array] roels
+     */
+    public function getRolesListAttribute(){
+        
+        return array_map('intval', $this->roles->lists('id')->toArray());
+        
+    }
 }

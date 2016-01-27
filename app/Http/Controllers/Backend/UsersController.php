@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Role;
 
 class UsersController extends Controller {
 
@@ -45,7 +46,9 @@ class UsersController extends Controller {
         $module_icon = $this->module_icon;
         $module_action = "Create";
 
-        return view("backend.$module_name.create", compact('title', 'module_name', 'module_icon', 'module_action'));
+        $roles = Role::lists('name', 'id');
+
+        return view("backend.$module_name.create", compact('title', 'module_name', 'module_icon', 'module_action', 'roles'));
     }
 
     /**
@@ -58,7 +61,8 @@ class UsersController extends Controller {
         
         $module_name = $this->module_name;
 
-        User::create($request->all());
+        $$module_name_singular = User::create($request->except('roles_list'));
+        $$module_name_singular->permissions()->attach($request->input('roles_list'));
 
         return redirect("admin/$module_name")->with('flash_success', "$module_name added!");
     }
@@ -99,6 +103,8 @@ class UsersController extends Controller {
         $module_name_singular = str_singular($this->module_name);
         $module_icon = $this->module_icon;
         $module_action = "Edit";
+
+        $roles = Role::lists('name', 'id');
         
         $$module_name_singular = User::findOrFail($id);
 
@@ -106,7 +112,8 @@ class UsersController extends Controller {
                                                         "$module_name_singular", 
                                                         'module_icon', 
                                                         'module_action',
-                                                        'title'));
+                                                        'title',
+                                                        'roles'));
         
     }
 
@@ -122,9 +129,15 @@ class UsersController extends Controller {
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
-        $module_name_singular = User::findOrFail($id);
-
-        $module_name_singular->update($request->all());        
+        $$module_name_singular = User::findOrFail($id);
+        $$module_name_singular->update($request->except('roles_list'));            
+        
+        if ($request->input('roles_list') === null){
+            $roles = array();
+            $$module_name_singular->roles()->sync($roles);
+        } else {
+            $$module_name_singular->roles()->sync($request->input('roles_list'));
+        }        
 
         return redirect("admin/$module_name")->with('flash_success', "Update successful!");
     }

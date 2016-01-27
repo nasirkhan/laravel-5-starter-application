@@ -45,6 +45,13 @@ $module_name_singular = str_singular($module_name);
                 {!! Form::text('email', old('email') , ['class' => 'form-control']) !!} 
             </div>
         </div>
+
+        <div class="form-group">
+            {!! Form::label('roles_list[]', 'Roles' , ['class' => 'col-sm-2 control-label']) !!}
+            <div class="col-sm-10">
+                {!! Form::select('roles_list[]', $roles, null, ['class' => 'form-control', 'multiple']) !!}
+            </div>
+        </div>
         
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
