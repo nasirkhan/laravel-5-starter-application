@@ -45,7 +45,7 @@ class RolesController extends Controller {
         $module_icon = $this->module_icon;
         $module_action = "Create";
 
-        $permissions = Permission::all();
+        $permissions = Permission::lists('name', 'id');
 
         return view("backend.$module_name.create", compact(
                         'title', 'module_name', 'module_icon', 'module_action', 'permissions'));
@@ -114,9 +114,7 @@ class RolesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(RolesRequest $request, $id) {
-// return $request->all();
-// return $request->input('permissions_list');
-// return $request->all();
+        
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
