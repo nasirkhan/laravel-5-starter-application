@@ -14,7 +14,6 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 
-
 class AuthController extends Controller {
     /*
       |--------------------------------------------------------------------------
@@ -56,13 +55,11 @@ use AuthenticatesAndRegistersUsers,
     public function postRegister(Request $request) {
 
         // validate the input
-        $validator = $this->validator($request->all());
-
-         if ($validator->fails()) {
-             $this->throwValidationException(
-                     $request, $validator
-             );
-         }
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed|min:6',
+        ]);
 
         // Create user
         $user = User::create($request->all());
@@ -71,7 +68,6 @@ use AuthenticatesAndRegistersUsers,
         $this->sendEmailConfirmationTo($user);
 
         // flash message
-
         Flash::message('Please confirm your email address.!');
 
         // redirect
@@ -149,21 +145,7 @@ use AuthenticatesAndRegistersUsers,
             return $user;
         }
     }
-    
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data) {
-        return Validator::make($data, [
-                    'name' => 'required|max:255',
-                    'email' => 'required|email|max:255|unique:users',
-                    'password' => 'required|confirmed|min:6',
-        ]);
-    }
-    
+
     protected function sendEmailConfirmationTo($user) {
         Mail::send('emails.confirm_email', ['user' => $user], function ($m) use ($user) {
             $m->from('hello@app.com', 'Your Application');
