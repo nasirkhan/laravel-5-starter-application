@@ -22,12 +22,12 @@ Route::group(['namespace' => 'Frontend'], function () {
  */
 Route::group(['namespace' => 'Backend'], function () {
     Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-        
+
         Route::get('/', ['as' => 'backend.dashboard', 'uses' => 'DashboardController@index']);
         Route::resource('users', 'UsersController');
         Route::resource('roles', 'RolesController');
         Route::resource('permissions', 'PermissionsController');
-        
+
     });
 });
 
@@ -39,6 +39,7 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 // Registration routes
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
+Route::get('register/confirm/{token}', 'Auth\AuthController@confirmEmail');
 
 // Password reset link request routes
 Route::get('password/email', 'Auth\PasswordController@getEmail');
@@ -49,8 +50,5 @@ Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 // Socialite routes
-//Route::get('auth/github', 'Auth\AuthController@redirectToProvider');
-//Route::get('auth/github/callback', 'Auth\AuthController@handleProviderCallback');
-
 Route::get('auth/{provider}', ['uses' => 'Auth\AuthController@redirectToProvider', 'as' => 'social.login']);
 Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
