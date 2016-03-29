@@ -150,6 +150,20 @@ use AuthenticatesAndRegistersUsers,
         }
     }
     
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data) {
+        return Validator::make($data, [
+                    'name' => 'required|max:255',
+                    'email' => 'required|email|max:255|unique:users',
+                    'password' => 'required|confirmed|min:6',
+        ]);
+    }
+    
     protected function sendEmailConfirmationTo($user) {
         Mail::send('emails.confirm_email', ['user' => $user], function ($m) use ($user) {
             $m->from('hello@app.com', 'Your Application');
