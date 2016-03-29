@@ -40,6 +40,21 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
     
+    
+    /**
+     * Boot the model.
+     *
+     * @return void
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            $user->token = str_random(30);
+        });
+    }
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -66,5 +81,28 @@ class User extends Model implements AuthenticatableContract,
         
         return array_map('intval', $this->roles->lists('id')->toArray());
         
+    }    
+
+    /**
+     * Set the password attribute.
+     *
+     * @param string $password
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
+    /**
+     * Confirm the user.
+     *
+     * @return void
+     */
+    public function confirmEmail()
+    {
+        $this->verified = true;
+        $this->token = null;
+
+        $this->save();
     }
 }
