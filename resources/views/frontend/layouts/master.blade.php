@@ -20,6 +20,10 @@
 
     </head>
     <body>
+        <div class="container">
+            @include('flash::message')
+        </div>
+
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -34,7 +38,7 @@
                     </button>
                     <a class="navbar-brand" href="#">@yield('title', config('settings.app_name'))</a>
                 </div>
-                <div id="navbar" class="navbar-collapse collapse">                    
+                <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#">Dashboard</a></li>
                         <li><a href="#">Settings</a></li>
@@ -44,7 +48,7 @@
                         <li>{!! link_to('auth/login', 'Login') !!}</li>
                         <li>{!! link_to('auth/register', 'Register') !!}</li>
                         @else
-                        <li class="dropdown">                        
+                        <li class="dropdown">
                             <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">{{ Auth::user()->name }} <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>{!! link_to('dashboard', 'Dashboard') !!}</li>
@@ -57,7 +61,7 @@
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
-        
+
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
             <div class="container">
@@ -94,7 +98,7 @@
             <footer>
                 <p>&copy; Company 2015</p>
             </footer>
-        </div> <!-- /container -->        
+        </div> <!-- /container -->
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
@@ -104,6 +108,6 @@
         <script src="{{asset('js/main.js')}}"></script>
 
         @include('includes.google-analytics')
-        
+
     </body>
 </html>
