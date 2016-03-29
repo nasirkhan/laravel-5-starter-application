@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <meta name="description" content="@yield('title', config('settings.meta_description'))">       
+        <meta name="description" content="@yield('title', config('settings.meta_description'))">
         <link rel="apple-touch-icon" href="{{asset('apple-touch-icon.png')}}">
         <meta name="author" content="Nasir Khan">
         <link rel="icon" href="{{asset('favicon.ico')}}">
@@ -61,7 +61,7 @@
         </style>
 
         <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-        <!--[if lt IE 9]><script src="{{asset('js/ie8-responsive-file-warning.js')}}"></script><![endif]-->        
+        <!--[if lt IE 9]><script src="{{asset('js/ie8-responsive-file-warning.js')}}"></script><![endif]-->
         <script src="{{asset('js/ie-emulation-modes-warning.js')}}"></script>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -72,8 +72,12 @@
     </head>
 
     <body>
-
         <div class="container">
+            @include('flash::message')
+        </div>
+        <div class="container">
+
+            @include('includes.errors')
 
             <form method="POST" action="/auth/login" class="form-signin">
                 <h2 class="form-signin-heading">Please sign in</h2>
@@ -81,7 +85,7 @@
                 {!! csrf_field() !!}
 
                 <label for="email" class="sr-only">Email address</label>
-                <input type="email" name="email" id="email" class="form-control" placeholder="Email address" value="{{ old('email') }}" required autofocus>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Email address" value="{{ old('email') }}" required>
 
                 <label for="password" class="sr-only">Password</label>
                 <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
@@ -91,7 +95,7 @@
                     </label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                
+
                 <hr>
 
                 <ul class="list-unstyled">
@@ -99,7 +103,7 @@
                         Do not have any account? <a href="/auth/register">Register here</a>.
                     </li>
                 </ul>
-                
+
                 <hr>
 
                 <ul class="list-unstyled">
@@ -107,7 +111,7 @@
                         <a href="/password/email">Click here</a> to Reset Password
                     </li>
                 </ul>
-                
+
                 <hr>
 
                 <ul class="list-inline">
@@ -118,7 +122,7 @@
                         <a class="btn btn-primary" href="{{ route('social.login', ['facebook']) }}">Facebook</a>
                     </li>
                 </ul>
-                                           
+
             </form>
 
         </div> <!-- /container -->
