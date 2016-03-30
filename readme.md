@@ -1,11 +1,18 @@
-## The Laravel Starter
+## The Laravel 5.1 Starter 
 
-Laravel starter application. This project can be used as a boilerplate for other laravel projects. 
+Laravel starter application. This project will be a gump start for any size web application. The frontend and Backend are seperated. Bootstrap 3 based theme is used for building the layouts. The following [feature](#feature) list to know about all the key features and functionalities. 
 
+<a name="feature"></a>
+## Features
+* Laravel 5.1.x
+* Bootstrap 3.x
+* Access Controle
+ * Register/Login/Logout/Password Reset
+ * Roles
+ * Permissions
+ * Third party login (Github/Facebook/Twitter/Google/Linked In/BitBucket)
+ * Account Confirmation By E-mail
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
-
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
 
 ## Official Documentation
 
