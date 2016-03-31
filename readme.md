@@ -12,6 +12,7 @@ Laravel starter application. This project will be a gump start for any size web 
  * Permissions
  * Third party login (Github/Facebook/Twitter/Google/Linked In/BitBucket)
  * Account Confirmation By E-mail
+* [Mailgun Transactional Email Templates](https://github.com/mailgun/transactional-email-templates)
 
 
 ## Official Documentation
