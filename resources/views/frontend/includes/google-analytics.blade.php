@@ -1,5 +1,5 @@
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-<script>
+<!--<script>
     (function (b, o, i, l, e, r) {
         b.GoogleAnalyticsObject = l;
         b[l] || (b[l] =
@@ -14,4 +14,4 @@
     }(window, document, 'script', 'ga'));
     ga('create', 'UA-XXXXX-X', 'auto');
     ga('send', 'pageview');
-</script>
+</script>-->
