@@ -41,6 +41,10 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('register/confirm/{token}', 'Auth\AuthController@confirmEmail');
 
+// Password change
+Route::get('auth/password/change', ['uses' => 'Backend\UsersController@getChangePassword', 'as' => 'password.change']);
+Route::post('auth/password/change', ['uses' => 'Backend\UsersController@postChangePassword', 'as' => 'password.change']);
+
 // Password reset link request routes
 Route::get('password/email', 'Auth\PasswordController@getEmail');
 Route::post('password/email', 'Auth\PasswordController@postEmail');
