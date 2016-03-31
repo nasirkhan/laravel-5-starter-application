@@ -40,7 +40,9 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Dashboard</a></li>
+                        @if(Auth::user())
+                            <li><a href="{{ route('backend.dashboard') }}">Admin Dashboard</a></li>
+                        @endif
                         <li><a href="#">Settings</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Help</a></li>
