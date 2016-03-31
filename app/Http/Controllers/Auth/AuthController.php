@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use Mail;
 use Flash;
 use App\User;
+use Validator;
 use App\UserProvider;
 use Illuminate\Http\Request;
-use Validator;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegistrationsRequest;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Support\Facades\Auth;
+
 
 class AuthController extends Controller {
     /*
@@ -52,14 +54,7 @@ use AuthenticatesAndRegistersUsers,
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function postRegister(Request $request) {
-
-        // validate the input
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
+    public function postRegister(RegistrationsRequest $request) {
 
         // Create user
         $user = User::create($request->all());
@@ -148,9 +143,9 @@ use AuthenticatesAndRegistersUsers,
 
     protected function sendEmailConfirmationTo($user) {
         Mail::send('emails.confirm_email', ['user' => $user], function ($m) use ($user) {
-            $m->from('hello@app.com', 'Your Application');
+            $m->from(config('settings.admin.email'), config('settings.admin.name'));
 
-            $m->to($user->email, $user->name)->subject('Your Reminder!');
+            $m->to($user->email, $user->name)->subject('Please Confirm Your Email! - ' . config('settings.app_name'));
         });
     }
 
