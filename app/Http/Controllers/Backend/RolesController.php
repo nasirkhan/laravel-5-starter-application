@@ -58,7 +58,11 @@ class RolesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(RolesRequest $request) {
+        $title = $this->title;
         $module_name = $this->module_name;
+        $module_icon = $this->module_icon;
+        
+        $module_name_singular = str_singular($this->module_name);
 
         $$module_name_singular = Role::create($request->except('permissions_list'));
         $$module_name_singular->permissions()->attach($request->input('permissions_list'));
