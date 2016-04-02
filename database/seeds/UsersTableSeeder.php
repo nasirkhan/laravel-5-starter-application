@@ -11,7 +11,18 @@ class UsersTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
+        // disable mysql foreigh key check
+        if (env('DB_CONNECTION') == 'mysql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        }
+        
 
+        /**
+         * 
+         * Insert Data
+         * 
+         * --------------------------------------
+         */
         DB::table('users')->insert([
             'name' => 'Admin Istrator',
             'email' => 'admin@admin.com',
@@ -31,6 +42,19 @@ class UsersTableSeeder extends Seeder {
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
+        
+         /**
+         * 
+         * END - Insert Data
+         * 
+         * --------------------------------------
+         * --------------------------------------
+         */
+        
+        // enable mysql foreigh key check
+        if (env('DB_CONNECTION') == 'mysql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        }
 
     }
 
