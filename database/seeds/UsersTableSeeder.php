@@ -12,10 +12,27 @@ class UsersTableSeeder extends Seeder {
      */
     public function run() {
         // disable mysql foreigh key check
-        if (env('DB_CONNECTION') == 'mysql') {
+        if (config('database.default') == 'mysql') {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         }
         
+        /**
+         * Setup config
+         */
+        // Model
+        $model = '\App\User';
+        
+        // Table
+        $table = 'users';
+        
+        /**
+         * TODO: Need to setup a config to enable and disable truncate
+         */
+        
+        // truncate Role table
+        if (config('database.default') == 'mysql') {
+            DB::table($table)->truncate();
+        }
 
         /**
          * 
@@ -52,7 +69,7 @@ class UsersTableSeeder extends Seeder {
          */
         
         // enable mysql foreigh key check
-        if (env('DB_CONNECTION') == 'mysql') {
+        if (config('database.default') == 'mysql') {
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         }
 
