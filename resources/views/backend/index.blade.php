@@ -21,9 +21,12 @@
     admin area
 </div>
 
-@can('permission1')
-    hello ...
+@can('view-backend')
+    <div class="alert alert-warning">
+        Visible to users with 'view-backend' permission
+    </div>
 @endcan	
+
 
 <a class="btn btn-lg btn-success" href="admin/users">
   <i class="fa fa-users fa-2x pull-left"></i> All Users
