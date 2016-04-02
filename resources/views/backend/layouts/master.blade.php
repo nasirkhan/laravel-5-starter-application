@@ -40,7 +40,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{{ route('backend.dashboard') }}">Admin Dashboard</a></li>
                         <li><a href="#">Settings</a></li>
-                        <li><a href="#">Profile</a></li>
+                        <li><a href="{{ route('admin.profiles.show', Auth::user()->id)}}">Profile</a></li>
                         <li><a href="#">Help</a></li>
                         @if (Auth::guest())
                         <li>{!! link_to('auth/login', 'Login') !!}</li>
@@ -49,7 +49,7 @@
                         <li class="dropdown">                        
                             <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">{{ Auth::user()->name }} <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li>{!! link_to('profile/'. Auth::user()->id, 'Profile') !!}</li>
+                                <li><a href="{{ route('admin.profiles.show', Auth::user()->id)}}">Profile</a></li>                                
                                 <li>{!! link_to('auth/password/change', 'Change Password') !!}</li>
                                 <li>{!! link_to('auth/logout', 'Logout') !!}</li>
                             </ul>
