@@ -10,6 +10,7 @@ php:
 # Commands to be run before your environment runs.
 before_script:
   - php -v
+  - mysql -e 'create database homestead;'
   - composer self-update
   - composer install --no-progress --no-interaction
   - cp .env.test .env
