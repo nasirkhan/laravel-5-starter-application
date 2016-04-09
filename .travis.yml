@@ -9,9 +9,15 @@ php:
 
 # Commands to be run before your environment runs.
 before_script:
+  - ping -c 3 mysql
+  - php -v
   - composer self-update
-  - composer install --prefer-source --no-interaction --dev
+  - composer install --no-progress --no-interaction
+  - cp .env.test .env
   - php artisan key:generate
+  - php artisan migrate:refresh
+  - php artisan db:seed
+  - php vendor/bin/phpunit --colors --coverage-text
 
 # Commands you want to run that will verify your build.
 script: phpunit
