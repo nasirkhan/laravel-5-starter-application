@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/nasirkhan/laravel-5-starter-application.svg?branch=master)](https://travis-ci.org/nasirkhan/laravel-5-starter-application)
+
 ## The Laravel 5.1 Starter 
 
 Laravel starter application. This project will be a gump start for any size web application. The frontend and Backend are seperated. Bootstrap 3 based theme is used for building the layouts. The following [feature](#feature) list to know about all the key features and functionalities. 
