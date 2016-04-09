@@ -9,7 +9,6 @@ php:
 
 # Commands to be run before your environment runs.
 before_script:
-  - ping -c 3 mysql
   - php -v
   - composer self-update
   - composer install --no-progress --no-interaction
