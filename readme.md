@@ -1,4 +1,6 @@
+[![build status](https://gitlab.com/nasirkhan/laravel-5-starter/badges/master/build.svg)](https://gitlab.com/nasirkhan/laravel-5-starter/commits/master)
 [![Build Status](https://travis-ci.org/nasirkhan/laravel-5-starter-application.svg?branch=master)](https://travis-ci.org/nasirkhan/laravel-5-starter-application)
+
 
 ## The Laravel 5.1 Starter 
 
@@ -9,25 +11,19 @@ Laravel starter application. This project will be a gump start for any size web 
 * Laravel 5.1.x
 * Bootstrap 3.x
 * Access Controle
- * Register/Login/Logout/Password Reset
+ * Laravel default [Authorization](https://laravel.com/docs/5.1/authorization) implemented
  * Roles
- * Permissions
+ * Permissions 
+ * Role based middleware 
+ * Permission based middleware
+ * Register/Login/Logout/Password Reset
  * Third party login (Github/Facebook/Twitter/Google/Linked In/BitBucket)
  * Account Confirmation By E-mail
 * [Mailgun Transactional Email Templates](https://github.com/mailgun/transactional-email-templates)
 
-
-## Official Documentation
-
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
-
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Thank you for considering contributing to the this project. Feel free to send a Merge Request.
 
 ### License
 

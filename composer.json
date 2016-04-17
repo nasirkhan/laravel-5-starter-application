@@ -1,9 +1,18 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "nasirkhan/laravel-5-starter",
+    "description": "Laravel Framework Based Starter Project",
+    "keywords": ["framework", "laravel", "starter", "boilerplate"],
+    "homepage": "https://gitlab.com/nasirkhan/laravel-5-starter",
     "license": "MIT",
     "type": "project",
+    "authors": [
+        {
+            "name": "Nasir Khan",
+            "email": "nasir8891@gmail.com",
+            "homepage": "http://nasirkhn.com",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
@@ -12,7 +21,8 @@
         "barryvdh/laravel-debugbar": "^2.0",
         "laravel/socialite": "^2.0",
         "guzzlehttp/guzzle": "~5.3|~6.0",
-        "laracasts/flash": "^2.0"
+        "laracasts/flash": "^2.0",
+        "vespakoen/menu": "3.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

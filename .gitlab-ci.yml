@@ -1,0 +1,58 @@
+# Before Script
+before_script:
+  - docker-php-ext-enable zip
+  - docker-php-ext-enable mbstring
+  - docker-php-ext-enable pdo_mysql
+  - ping -c 3 mysql  
+  - composer self-update
+  - composer install --no-progress --no-interaction
+  - cp .env.test .env
+  - php artisan key:generate
+  - php artisan migrate:refresh
+  - php artisan db:seed
+
+# Services
+services:
+  - mysql:latest
+
+# Variables
+variables:
+  WITH_XDEBUG: "1"
+  MYSQL_ROOT_PASSWORD: secret
+  MYSQL_DATABASE: homestead
+  MYSQL_USER: homestead
+  MYSQL_PASSWORD: secret
+  COMPOSER_HOME: /cache/composer
+
+#Stages
+stages:
+#  - linter
+  - test
+
+#PHP 5.6
+php-5.6:
+  type: test
+  image: tetraweb/php:5.6-cli
+  script:
+    - php -v
+    - echo "Running PHPUnit Tests on PHP 5.6"
+    - php vendor/bin/phpunit --colors --coverage-text
+
+#PHP 7.0
+php-7.0:
+  type: test
+  image: tetraweb/php:7.0-cli
+  script:
+    - php -v
+    - echo "Running PHPUnit Tests on PHP 7.0"
+    - php vendor/bin/phpunit --colors --coverage-text
+    
+#PHP CS    
+#phpcs:
+#  type: linter
+#  image: tetraweb/php:5.6-cli
+#  script:
+#    - php -v
+#    - phpcs --version
+#    - phpcs -p --standard=PSR2 --ignore="app/helpers.php,app/Http/routes.php" app/
+#  allow_failure: true
