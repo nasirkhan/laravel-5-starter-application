@@ -1,6 +1,6 @@
 [![build status](https://gitlab.com/nasirkhan/laravel-5-starter/badges/master/build.svg)](https://gitlab.com/nasirkhan/laravel-5-starter/commits/master)
 [![Build Status](https://travis-ci.org/nasirkhan/laravel-5-starter-application.svg?branch=master)](https://travis-ci.org/nasirkhan/laravel-5-starter-application)
-
+[![Latest Unstable Version](https://poser.pugx.org/nasirkhan/laravel-5-starter/v/unstable)](https://packagist.org/packages/nasirkhan/laravel-5-starter)
 
 ## The Laravel 5.1 Starter 
 
