@@ -7,10 +7,11 @@ use App\Http\Requests\PermissionsRequest;
 use App\Http\Controllers\Controller;
 use App\Permission;
 
-class PermissionsController extends Controller {
+class PermissionsController extends Controller
+{
 
-    public function __construct() {
-
+    public function __construct()
+    {
         $this->module_name = 'permissions';
         $this->module_icon = 'key';
         $this->title = "Application Admin Dashboard";
@@ -21,7 +22,8 @@ class PermissionsController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
         $title = $this->title;
         $module_name = $this->module_name;
         $module_icon = $this->module_icon;
@@ -38,7 +40,8 @@ class PermissionsController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         $title = $this->title;
         $module_name = $this->module_name;
         $module_icon = $this->module_icon;
@@ -53,7 +56,8 @@ class PermissionsController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PermissionsRequest $request) {
+    public function store(PermissionsRequest $request)
+    {
         $module_name = $this->module_name;
 
         Permission::create($request->all());
@@ -67,21 +71,17 @@ class PermissionsController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-        
+    public function show($id)
+    {
         $title = $this->title;
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
         $module_icon = $this->module_icon;
         $module_action = "Details";
-        
+
         $$module_name_singular = Permission::findOrFail($id);
 
-        return view("backend.$module_name.show", compact('module_name', 
-                                                        "$module_name_singular", 
-                                                        'module_icon', 
-                                                        'module_action',
-                                                        'title'));
+        return view("backend.$module_name.show", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
     }
 
     /**
@@ -90,22 +90,17 @@ class PermissionsController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
-        
+    public function edit($id)
+    {
         $title = $this->title;
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
         $module_icon = $this->module_icon;
         $module_action = "Edit";
-        
+
         $$module_name_singular = Permission::findOrFail($id);
 
-        return view("backend.$module_name.edit", compact('module_name', 
-                                                        "$module_name_singular", 
-                                                        'module_icon', 
-                                                        'module_action',
-                                                        'title'));
-        
+        return view("backend.$module_name.edit", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
     }
 
     /**
@@ -115,17 +110,16 @@ class PermissionsController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PermissionsRequest $request, $id) {
-        
+    public function update(PermissionsRequest $request, $id)
+    {
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
         $module_name_singular = Permission::findOrFail($id);
 
-        $module_name_singular->update($request->all());        
+        $module_name_singular->update($request->all());
 
         return redirect("admin/$module_name")->with('flash_success', "Update successful!");
-        
     }
 
     /**
@@ -134,8 +128,8 @@ class PermissionsController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         //
     }
-
 }

@@ -8,10 +8,11 @@ use App\Http\Controllers\Controller;
 use App\Role;
 use App\Permission;
 
-class RolesController extends Controller {
+class RolesController extends Controller
+{
 
-    public function __construct() {
-
+    public function __construct()
+    {
         $this->module_name = 'roles';
         $this->module_icon = 'user-secret';
         $this->title = "Application Admin Dashboard";
@@ -22,7 +23,8 @@ class RolesController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
         $title = $this->title;
         $module_name = $this->module_name;
         $module_icon = $this->module_icon;
@@ -39,7 +41,8 @@ class RolesController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         $title = $this->title;
         $module_name = $this->module_name;
         $module_icon = $this->module_icon;
@@ -47,8 +50,7 @@ class RolesController extends Controller {
 
         $permissions = Permission::lists('name', 'id');
 
-        return view("backend.$module_name.create", compact(
-                        'title', 'module_name', 'module_icon', 'module_action', 'permissions'));
+        return view("backend.$module_name.create", compact('title', 'module_name', 'module_icon', 'module_action', 'permissions'));
     }
 
     /**
@@ -57,11 +59,12 @@ class RolesController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RolesRequest $request) {
+    public function store(RolesRequest $request)
+    {
         $title = $this->title;
         $module_name = $this->module_name;
         $module_icon = $this->module_icon;
-        
+
         $module_name_singular = str_singular($this->module_name);
 
         $$module_name_singular = Role::create($request->except('permissions_list'));
@@ -76,8 +79,8 @@ class RolesController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-
+    public function show($id)
+    {
         $title = $this->title;
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
@@ -95,8 +98,8 @@ class RolesController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
-
+    public function edit($id)
+    {
         $title = $this->title;
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
@@ -117,15 +120,15 @@ class RolesController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RolesRequest $request, $id) {
-        
+    public function update(RolesRequest $request, $id)
+    {
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
         $$module_name_singular = Role::findOrFail($id);
-        $$module_name_singular->update($request->except('permissions_list'));            
-        
-        if ($request->input('permissions_list') === null){
+        $$module_name_singular->update($request->except('permissions_list'));
+
+        if ($request->input('permissions_list') === null) {
             $permissions = array();
             $$module_name_singular->permissions()->sync($permissions);
         } else {
@@ -141,8 +144,8 @@ class RolesController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         //
     }
-
 }

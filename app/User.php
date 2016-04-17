@@ -13,11 +13,13 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 /**
  * User Model
  */
-class User extends Model implements AuthenticatableContract,
-                                    AuthorizableContract,
-                                    CanResetPasswordContract
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, HasRoles;
+
+    use Authenticatable,
+        Authorizable,
+        CanResetPassword,
+        HasRoles;
 
     /**
      * The database table used by the model.
@@ -39,8 +41,7 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
-    
-    
+
     /**
      * Boot the model.
      *
@@ -54,14 +55,15 @@ class User extends Model implements AuthenticatableContract,
             $user->token = str_random(30);
         });
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function providers() {
+    public function providers()
+    {
         return $this->hasMany('App\UserProvider');
     }
-    
+
     /**
      * A permission can be applied to roles.
      *
@@ -74,14 +76,14 @@ class User extends Model implements AuthenticatableContract,
 
     /**
      * Get the list of users related to the current User
-     * 
+     *
      * @return [array] roels
      */
-    public function getRolesListAttribute(){
-        
+    public function getRolesListAttribute()
+    {
+
         return array_map('intval', $this->roles->lists('id')->toArray());
-        
-    }    
+    }
 
     /**
      * Set the password attribute.

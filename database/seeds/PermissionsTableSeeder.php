@@ -16,29 +16,29 @@ class PermissionsTableSeeder extends Seeder
          */
         // Model
         $model = '\App\Permission';
-        
+
         // Table
         $table = 'permissions';
 
         /**
          * TODO: Need to setup a config to enable and disable truncate
          */
-        
+
         // truncate Role table
         if (config('database.default') == 'mysql') {
             DB::table($table)->truncate();
         }
 
-        
+
 
         /**
-         * 
+         *
          * Insert Data
-         * 
+         *
          * --------------------------------------
          */
-        
-        //Create admin role, id of 1               
+
+        //Create admin role, id of 1
         $admin = new $model;
         $admin->name = 'view-backend';
         $admin->label = 'view-backend';
@@ -54,10 +54,18 @@ class PermissionsTableSeeder extends Seeder
         $admin->updated_at = Carbon::now();
         $admin->save();
 
+        //id = 3
+        $admin = new $model;
+        $admin->name = 'view-permissions';
+        $admin->label = 'view-permissions';
+        $admin->created_at = Carbon::now();
+        $admin->updated_at = Carbon::now();
+        $admin->save();
+
         /**
-         * 
+         *
          * END - Insert Data
-         * 
+         *
          * --------------------------------------
          * --------------------------------------
          */

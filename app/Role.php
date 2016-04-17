@@ -5,7 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Permission;
 
-class Role extends Model {
+class Role extends Model
+{
 
     protected $guarded = ['id', '_token'];
 
@@ -14,18 +15,20 @@ class Role extends Model {
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function permissions() {
+    public function permissions()
+    {
         return $this->belongsToMany(Permission::class);
     }
+
     /**
      * Get the list of users related to the current Role
-     * 
+     *
      * @return [array] permissions
      */
-    public function getPermissionsListAttribute(){
-        
+    public function getPermissionsListAttribute()
+    {
+
         return array_map('intval', $this->permissions->lists('id')->toArray());
-        
     }
 
     /**
@@ -34,11 +37,13 @@ class Role extends Model {
      * @param  Permission $permission
      * @return mixed
      */
-    public function givePermissionTo(Permission $permission) {
+    public function givePermissionTo(Permission $permission)
+    {
         return $this->permissions()->save($permission);
     }
 
-    public function setPermissionsAttribute($values) {
+    public function setPermissionsAttribute($values)
+    {
 
         $errors = array_filter($values);
 
@@ -48,13 +53,14 @@ class Role extends Model {
                 $permission = Permission::findOrFail($value);
                 $this->givePermissionTo($permission);
 
-//                print_r($value);                
+//                print_r($value);
             }
         }
     }
-    
-    public function hasPermission($permission) {
-        
+
+    public function hasPermission($permission)
+    {
+
         $errors = array_filter($permission);
 
         if (!empty($errors)) {
@@ -62,13 +68,9 @@ class Role extends Model {
 
                 $permission = Permission::findOrFail($value);
                 $this->givePermissionTo($permission);
-                
+
                 return !!$permission->intersect($this->permissions)->count();
-                
             }
         }
-
-        
     }
-
 }

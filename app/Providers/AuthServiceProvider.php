@@ -6,7 +6,8 @@ use App\Permission;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
-class AuthServiceProvider extends ServiceProvider {
+class AuthServiceProvider extends ServiceProvider
+{
 
     /**
      * The policy mappings for the application.
@@ -23,7 +24,8 @@ class AuthServiceProvider extends ServiceProvider {
      * @param  \Illuminate\Contracts\Auth\Access\Gate  $gate
      * @return void
      */
-    public function boot(GateContract $gate) {
+    public function boot(GateContract $gate)
+    {
         parent::registerPolicies($gate);
 
         foreach ($this->getPermissions() as $permission) {
@@ -33,12 +35,12 @@ class AuthServiceProvider extends ServiceProvider {
         }
     }
 
-    protected function getPermissions() {
+    protected function getPermissions()
+    {
         try {
             return Permission::with('roles')->get();
         } catch (\Exception $e) {
             return [];
         }
     }
-
 }

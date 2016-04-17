@@ -18,9 +18,18 @@ Route::group(['namespace' => 'Backend'], function () {
 
         Route::get('/', ['as' => 'backend.dashboard', 'uses' => 'DashboardController@index']);
         Route::resource('users', 'UsersController');
-        Route::resource('roles', 'RolesController');
-        Route::resource('permissions', 'PermissionsController');
-        
+
+        // users with administrator role can only access this route
+        Route::group(['middleware' => 'role:administrator'], function () {
+            Route::resource('roles', 'RolesController');
+        });
+
+        // users with view-permissions permission can only access this route
+        Route::group(['middleware' => 'permission:view-permissions'], function () {
+            Route::resource('permissions', 'PermissionsController');
+        });
+
+
         // Profiles routes
         Route::resource('profiles', 'ProfilesController');
     });

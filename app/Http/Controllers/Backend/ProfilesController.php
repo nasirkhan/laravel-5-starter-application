@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class ProfilesController extends Controller {
+class ProfilesController extends Controller
+{
 
-    public function __construct() {
-
+    public function __construct()
+    {
         $this->module_name = 'profiles';
         $this->module_icon = 'user';
         $this->title = "Application Admin Dashboard";
@@ -22,7 +23,8 @@ class ProfilesController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
         //
     }
 
@@ -31,7 +33,8 @@ class ProfilesController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         //
     }
 
@@ -41,7 +44,8 @@ class ProfilesController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         //
     }
 
@@ -51,8 +55,8 @@ class ProfilesController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-        
+    public function show($id)
+    {
         $id = Auth::user()->id;
                 
         $title = $this->title;
@@ -72,7 +76,8 @@ class ProfilesController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id)
+    {
         //
     }
 
@@ -83,7 +88,8 @@ class ProfilesController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         //
     }
 
@@ -93,8 +99,8 @@ class ProfilesController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         //
     }
-
 }

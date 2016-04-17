@@ -12,10 +12,11 @@ use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Controllers\Controller;
 use App\Role;
 
-class UsersController extends Controller {
+class UsersController extends Controller
+{
 
-    public function __construct() {
-
+    public function __construct()
+    {
         $this->module_name = 'users';
         $this->module_icon = 'users';
         $this->title = "Application Admin Dashboard";
@@ -26,7 +27,8 @@ class UsersController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
         $title = $this->title;
         $module_name = $this->module_name;
         $module_icon = $this->module_icon;
@@ -43,8 +45,8 @@ class UsersController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
-
+    public function create()
+    {
         $title = $this->title;
         $module_name = $this->module_name;
         $module_icon = $this->module_icon;
@@ -61,8 +63,8 @@ class UsersController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-
+    public function store(Request $request)
+    {
         $module_name = $this->module_name;
 
         $$module_name_singular = User::create($request->except('roles_list'));
@@ -77,8 +79,8 @@ class UsersController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-
+    public function show($id)
+    {
         $title = $this->title;
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
@@ -96,8 +98,8 @@ class UsersController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
-
+    public function edit($id)
+    {
         $title = $this->title;
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
@@ -118,8 +120,8 @@ class UsersController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
-
+    public function update(Request $request, $id)
+    {
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
@@ -142,14 +144,16 @@ class UsersController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         //
     }
 
     /**
      * @return \Illuminate\View\View
      */
-    public function getChangePassword() {
+    public function getChangePassword()
+    {
         return view('auth.change-password');
     }
 
@@ -157,19 +161,20 @@ class UsersController extends Controller {
      * @param ChangePasswordRequest $request
      * @return mixed
      */
-    public function postChangePassword(ChangePasswordRequest $request) {
+    public function postChangePassword(ChangePasswordRequest $request)
+    {
 
         // get the current user
         $user = Auth::user();
 
         if (Hash::check($request->old_password, $user->password)) {
 
-            // assign new password 
+            // assign new password
             $user->password = $request->password;
-            
+
             // save password
             $user->save();
-            
+
             // flash message
             Flash::message('The user password has been updated!');
 
@@ -177,10 +182,8 @@ class UsersController extends Controller {
         } else {
             // flash message
             Flash::error('Old password is not verified!');
-            
+
             return redirect()->back()->withInput();
         }
-
     }
-
 }

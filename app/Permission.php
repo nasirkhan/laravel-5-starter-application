@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Permission extends Model {
+class Permission extends Model
+{
 
     protected $guarded = ['id', '_token'];
 
@@ -13,8 +14,8 @@ class Permission extends Model {
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function roles() {
+    public function roles()
+    {
         return $this->belongsToMany(Role::class);
     }
-
 }

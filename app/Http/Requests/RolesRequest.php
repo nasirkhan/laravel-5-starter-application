@@ -5,8 +5,8 @@ namespace App\Http\Requests;
 use App\Http\Requests\Request;
 
 class RolesRequest extends Request
-{  
-    
+{
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -14,7 +14,7 @@ class RolesRequest extends Request
      */
     public function authorize()
     {
-        return TRUE;
+        return true;
     }
 
     /**

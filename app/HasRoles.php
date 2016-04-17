@@ -23,9 +23,7 @@ trait HasRoles
      */
     public function assignRole($role)
     {
-        return $this->roles()->save(
-            Role::whereName($role)->firstOrFail()
-        );
+        return $this->roles()->save(Role::whereName($role)->firstOrFail());
     }
 
     /**
@@ -40,7 +38,7 @@ trait HasRoles
             return $this->roles->contains('name', $role);
         }
 
-        return !! $role->intersect($this->roles)->count();
+        return !!$role->intersect($this->roles)->count();
     }
 
     /**

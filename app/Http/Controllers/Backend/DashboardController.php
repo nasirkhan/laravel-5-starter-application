@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class DashboardController extends Controller {
+class DashboardController extends Controller
+{
     
-    public function __construct() {
-
+    public function __construct()
+    {
         $this->module_name = 'dashboards';
         $this->module_icon = 'dashboard';
         $this->title = "Application Admin Dashboard";
-        
     }
 
     /**
@@ -21,21 +21,20 @@ class DashboardController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        
-        $title = $this->title;        
+    public function index()
+    {
+        $title = $this->title;
         $module_name = $this->module_name;
         $module_icon = $this->module_icon;
         
         $page_heading = "Admin Dashboard";
 
-        if(auth()->user()->can('permission1')){
+        if (auth()->user()->can('permission1')) {
             return "omg... it worked";
         }
         
         
         return view('backend.index', compact('title', 'page_heading', 'module_icon'));
-        
     }
 
     /**
@@ -43,7 +42,8 @@ class DashboardController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         //
     }
 
@@ -53,7 +53,8 @@ class DashboardController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         //
     }
 
@@ -63,7 +64,8 @@ class DashboardController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($id)
+    {
         //
     }
 
@@ -73,7 +75,8 @@ class DashboardController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id)
+    {
         //
     }
 
@@ -84,7 +87,8 @@ class DashboardController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         //
     }
 
@@ -94,8 +98,8 @@ class DashboardController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         //
-    }    
-
+    }
 }

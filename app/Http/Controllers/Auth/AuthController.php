@@ -15,8 +15,8 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Laravel\Socialite\Facades\Socialite;
 
-
-class AuthController extends Controller {
+class AuthController extends Controller
+{
     /*
       |--------------------------------------------------------------------------
       | Registration & Login Controller
@@ -28,8 +28,7 @@ class AuthController extends Controller {
       |
      */
 
-use AuthenticatesAndRegistersUsers,
-    ThrottlesLogins;
+    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     private $redirectTo = '/';
 
@@ -38,13 +37,15 @@ use AuthenticatesAndRegistersUsers,
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('guest', ['except' => 'getLogout']);
 
         $this->redirectPath = route('home');
     }
 
-    public function getRegister() {
+    public function getRegister()
+    {
         return view('auth.register');
     }
 
@@ -54,7 +55,8 @@ use AuthenticatesAndRegistersUsers,
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function postRegister(RegistrationsRequest $request) {
+    public function postRegister(RegistrationsRequest $request)
+    {
 
         // Create user
         $user = User::create($request->all());
@@ -75,7 +77,8 @@ use AuthenticatesAndRegistersUsers,
      * @param  string $token
      * @return mixed
      */
-    public function confirmEmail($token) {
+    public function confirmEmail($token)
+    {
         User::whereToken($token)->firstOrFail()->confirmEmail();
 
         flash('You are now confirmed. Please login.');
@@ -83,11 +86,13 @@ use AuthenticatesAndRegistersUsers,
         return redirect('auth/login');
     }
 
-    public function redirectToProvider($provider) {
+    public function redirectToProvider($provider)
+    {
         return Socialite::driver($provider)->redirect();
     }
 
-    public function handleProviderCallback($provider) {
+    public function handleProviderCallback($provider)
+    {
         try {
             $user = Socialite::driver($provider)->user();
         } catch (Exception $e) {
@@ -107,14 +112,13 @@ use AuthenticatesAndRegistersUsers,
      * @param $githubUser
      * @return User
      */
-    private function findOrCreateUser($socialUser, $provider) {
+    private function findOrCreateUser($socialUser, $provider)
+    {
         if ($authUser = UserProvider::where('provider_id', $socialUser->getId())->first()) {
-
             $authUser = User::findOrFail($authUser->user->id);
 
             return $authUser;
-        } else if ($authUser = User::where('email', $socialUser->getEmail())->first()) {
-
+        } elseif ($authUser = User::where('email', $socialUser->getEmail())->first()) {
             UserProvider::create([
                 'user_id' => $authUser->id,
                 'provider_id' => $socialUser->getId(),
@@ -124,7 +128,6 @@ use AuthenticatesAndRegistersUsers,
 
             return $authUser;
         } else {
-
             $user = User::create([
                         'name' => $socialUser->getName(),
                         'email' => $socialUser->getEmail()
@@ -141,12 +144,12 @@ use AuthenticatesAndRegistersUsers,
         }
     }
 
-    protected function sendEmailConfirmationTo($user) {
+    protected function sendEmailConfirmationTo($user)
+    {
         Mail::send('emails.confirm_email', ['user' => $user], function ($m) use ($user) {
             $m->from(config('settings.admin.email'), config('settings.admin.name'));
 
             $m->to($user->email, $user->name)->subject('Please Confirm Your Email! - ' . config('settings.app_name'));
         });
     }
-
 }

@@ -6,6 +6,7 @@ use App\Http\Requests\Request;
 
 class PermissionsRequest extends Request
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,7 +14,7 @@ class PermissionsRequest extends Request
      */
     public function authorize()
     {
-        return TRUE;
+        return true;
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace app\Http\Requests;
 
 use App\Http\Requests\Request;
 
@@ -8,10 +8,12 @@ use App\Http\Requests\Request;
  * Class ChangePasswordRequest
  * @package App\Http\Requests\Frontend\Access
  */
-class ChangePasswordRequest extends Request {
+class ChangePasswordRequest extends Request
+{
 
-    public function authorize() {
-        return TRUE;
+    public function authorize()
+    {
+        return true;
     }
 
     /**
@@ -19,11 +21,11 @@ class ChangePasswordRequest extends Request {
      *
      * @return array
      */
-    public function rules() {
+    public function rules()
+    {
         return [
             'old_password' => 'required',
             'password' => 'required|min:6|confirmed',
         ];
     }
-
 }
